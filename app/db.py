@@ -30,10 +30,11 @@ class TextNoteUpdate(TextNoteBase):
 
 class VoiceNoteBase(SQLModel):
     content: bytes
+    date: datetime
 
 class VoiceNoteSimple(SQLModel):
     id: Optional[int] = Field(default=None, primary_key = True)
-    date: datetime = Field(sa_column=sa.Column(sa.DateTime(timezone=True), nullable=False), default_factory=datetime.utcnow)
+    #date: datetime = Field(sa_column=sa.Column(sa.DateTime(timezone=True), nullable=False), default_factory=datetime.utcnow)
 
 class VoiceNote(VoiceNoteBase, VoiceNoteSimple, table=True):
     user_id: Optional[int] = Field(default=None, foreign_key = "user.id")
