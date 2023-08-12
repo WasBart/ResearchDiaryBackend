@@ -15,11 +15,12 @@ class User(SQLModel, table=True):
 
 class TextNoteBase(SQLModel):
     text: str
+    date: datetime
 
 class TextNote(TextNoteBase, table=True):
     id: Optional[int] = Field(default=None, primary_key = True)
     user_id: Optional[int] = Field(default=None, foreign_key = "user.id")
-    date: datetime = Field(sa_column=sa.Column(sa.DateTime(timezone=True), nullable=False), default_factory=datetime.utcnow)
+    #date: datetime = Field(sa_column=sa.Column(sa.DateTime(timezone=True), nullable=False), default_factory=datetime.utcnow)
 
 class TextNoteCreate(TextNoteBase):
     pass
