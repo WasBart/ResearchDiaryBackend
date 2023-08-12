@@ -63,7 +63,7 @@ async def delete_text_note(note_id: int, user: User = Depends(get_current_user),
 
 @app.get("/text_notes/", response_model=List[TextNote])
 async def get_text_notes(user: User = Depends(get_current_user), db: AsyncSession = Depends(get_async_session)):
-    result = await db.exec(select(TextNote).where(TextNote.user_id == user.id))
+    result = await db.exec(select(TextNote).where(TextNote.user_id == user.id).order_by(TextNote.date.desc()))
     result = result.all()
     return result
 
