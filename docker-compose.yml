@@ -7,7 +7,7 @@ services:
     volumes:
       - .:/app
     ports:
-      - 8008:8000
+      - 80:8000
     environment:
       - DATABASE_URL=postgresql+asyncpg://research_diary:research_diary@db:5432/research_diary
     depends_on:
