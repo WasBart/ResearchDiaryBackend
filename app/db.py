@@ -29,8 +29,10 @@ class TextNoteUpdate(TextNoteBase):
     pass
 
 class VoiceNoteBase(SQLModel):
-    content: bytes
     date: datetime
+
+class VoiceNoteCreate(VoiceNoteBase):
+    pass
 
 class VoiceNoteSimple(SQLModel):
     id: Optional[int] = Field(default=None, primary_key = True)
@@ -38,6 +40,7 @@ class VoiceNoteSimple(SQLModel):
 
 class VoiceNote(VoiceNoteBase, VoiceNoteSimple, table=True):
     user_id: Optional[int] = Field(default=None, foreign_key = "user.id")
+    path: str
     
 async_engine = create_async_engine(
     settings.db_url,
